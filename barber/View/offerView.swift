@@ -17,5 +17,14 @@ class offerView: UIView {
         // Drawing code
     }
     */
-
+    
+    @IBOutlet weak var containerView: UIView!
+    
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var distance: UILabel!
+    
+    
+    @IBOutlet weak var discountImage: UIImageView!
 }

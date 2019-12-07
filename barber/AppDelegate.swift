@@ -8,16 +8,184 @@
 
 import UIKit
 import CoreData
+import Firebase
+import FBSDKCoreKit
+import GoogleSignIn
+import TwitterKit
+import IQKeyboardManagerSwift
 
+
+import UserNotifications
+import GoogleMaps
+
+// 1
+let googleApiKey = "AIzaSyA2CGHxroRluiki3e20wiVERc3fBI7gOOY"
+var navigationColorCode = "#93080b"
+var userType = 0
+var node = "customers"
+var selected_switch = 0
+
+var social = "facebook"
+// Mark to to get user data Globally
+var userData = [String:AnyObject]()
+// Mark to to get user token globally
+
+var token = ""
+// Mark to detect whether user want to login or sign 0 for login and 1 for signUp
+var loginType = 0
+@available(iOS 10.0, *)
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterDelegate  {
+  
+   var window: UIWindow?
+    var databaseRef: DatabaseReference!
+
+     var appUser:userModel = userModel()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FirebaseApp.configure()
+      
+        TWTRTwitter.sharedInstance().start(withConsumerKey: "AR2OboUaRTWcpMYmqZ90c59f4", consumerSecret: "BaTCI1UBXNJoW51rA8L0x7afcsumZWe6OYXcwlMVzI9gBAXGQK")
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {(granted, error) in
+                    if (granted) {
+                        
+                    } else{
+                        print("Notification permissions not granted")
+                    }
+            })
+            // For iOS 10 data message (sent via FCM
+            
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+    
+
+ 
+      // removeUserData()
+        application.registerForRemoteNotifications()
+        
+        (IQKeyboardManager.shared).enable = true
+        (IQKeyboardManager.shared).shouldToolbarUsesTextFieldTintColor = true
+        (IQKeyboardManager.shared).shouldResignOnTouchOutside = true
+        (IQKeyboardManager.shared).shouldPlayInputClicks = true
+        (IQKeyboardManager.shared).toolbarDoneBarButtonItemText = "Done"
+         GMSServices.provideAPIKey(googleApiKey)
         return true
+    }
+   
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        let firebaseAuth = Auth.auth()
+        do {
+             print("User signed out google")
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
+        print("User signed into google")
+        
+        let authentication = user.authentication
+        let credential = GoogleAuthProvider.credential(withIDToken: (authentication?.idToken)!,
+                                                          accessToken: (authentication?.accessToken)!)
+        
+       Auth.auth().signIn(with: credential) { (user, error) in
+            print("User Signed Into Firebase")
+            
+            
+        self.databaseRef = Database.database().reference()
+            
+            self.databaseRef.child("user_profiles").child(user!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                let snapshot = snapshot.value as? NSDictionary
+                
+                if(snapshot == nil)
+                {
+                    self.databaseRef.child("user_profiles").child(user!.uid).child("name").setValue(user?.displayName)
+                    self.databaseRef.child("user_profiles").child(user!.uid).child("email").setValue(user?.email)
+                }
+                
+                let mainStoryboard: UIStoryboard = UIStoryboard(name:"Main", bundle: nil)
+                
+                self.window?.rootViewController?.performSegue(withIdentifier: "HomeViewSegue", sender: nil)
+                
+            })
+            
+        }
+    }
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
+    {
+        let   tokenString = deviceToken.reduce("", {$0 + String(format: "%02X",    $1)})
+        // kDeviceToken=tokenString
+        print("deviceToken: \(tokenString)")
+        token = tokenString
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let googleAuthentication = GIDSignIn.sharedInstance().handle(url, sourceApplication:options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+        
+        let facebookAuthentication = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String, annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+        let twitterAuthentication = TWTRTwitter.sharedInstance().application(app, open: url, options: options)
+        
+        return  googleAuthentication
+
+    }
+    
+    
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        // With swizzling disabled you must let Messaging know about the message, for Analytics
+        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        // Print message ID.
+        
+        // Print full message.
+        print(userInfo)
+        
+    }
+  
+    func application(
+        _ application: UIApplication,
+        didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+        fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+    }
+    @available(iOS 10.0, *)
+    func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([UNNotificationPresentationOptions.alert,UNNotificationPresentationOptions.sound,UNNotificationPresentationOptions.badge])
+    }
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+        let userInfo = notification.request.content.userInfo as? NSDictionary
+        print("yarab\(userInfo)")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -46,6 +214,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Core Data stack
 
+    @available(iOS 10.0, *)
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation

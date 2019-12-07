@@ -12,16 +12,32 @@ class signUpCustomerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        nextBtn.ButtonborderRoundradius(radius: 17)
+        pickBtn.ButtonborderRoundradius(radius: 17)
+        firstNameText.TextborderRound()
+        lastNameText.TextborderRound()
+         CountryText.placeholderColor()
+        firstNameText.placeholderColor()
+         lastNameText.placeholderColor()
+         CountryText.placeholderColor()
         // Do any additional setup after loading the view.
     }
 
+    @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var pickBtn: UIButton!
+    @IBOutlet weak var firstNameText: UITextField!
+    @IBOutlet weak var lastNameText : UITextField!
+    @IBOutlet weak var CountryText : UITextField!
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
+    @IBAction func nextAction(_ sender: Any) {
+    }
+    @IBAction func pickAction(_ sender: Any) {
+    }
     /*
     // MARK: - Navigation
 

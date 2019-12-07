@@ -10,6 +10,7 @@ import UIKit
 
 class preferenceView: UIView {
 
+    @IBOutlet weak var switchBtn: UISwitch!
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -18,4 +19,20 @@ class preferenceView: UIView {
     }
     */
 
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var subLabel: UILabel!
+    @IBOutlet weak var mainLabel: UILabel!
+    @IBAction func switchAction(_ sender: UISwitch) {
+        if sender.isOn == true {
+            self.segment.isEnabled = true
+        }else{
+            self.segment.isEnabled = false
+        }
+    }
+    @IBOutlet weak var segment: UISegmentedControl!
+    
+    @IBAction func segmentAction(_ sender: Any) {
+        
+    }
+    
 }

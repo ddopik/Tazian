@@ -1,0 +1,6 @@
+framework module Pods_barberTests {
+  umbrella header "Pods-barberTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

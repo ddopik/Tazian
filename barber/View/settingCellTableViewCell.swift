@@ -10,6 +10,8 @@ import UIKit
 
 class settingCellTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var settingImg: UIImageView!
+    @IBOutlet weak var actionBtn: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -8,182 +8,113 @@
 
 import Foundation
 import UIKit
-struct userModel {
-    var userName = ""
-    // var profileImage : UIImage = UIImage()
-    var userID = ""
-    var userPhoneNumber = ""
-    var userEmail = ""
-    var userPassword = ""
-    var role  = 0
-}
 
-func arraySaveData(usermodel :[String:AnyObject]) -> [String:AnyObject]{
-    var newUser = [String:AnyObject]()
-    newUser["userId"] = usermodel["name"] as AnyObject ?? "" as AnyObject
-    newUser["userId"] = usermodel["name"] as AnyObject ?? "" as AnyObject
-    newUser["userId"] = "" as AnyObject
-    newUser["userId"] = "" as AnyObject
-    newUser["userId"] = "" as AnyObject
-    
-    return newUser
-}
-func saveUserData() {
-    
-    if #available(iOS 10.0, *) {
-        let delegate =  UIApplication.shared.delegate as! AppDelegate
-        UserDefaults.standard.set(delegate.appUser.userPassword, forKey: "password")
-        UserDefaults.standard.set(delegate.appUser.userID, forKey: "ID")
-        UserDefaults.standard.set(delegate.appUser.userName, forKey: "name")
-        UserDefaults.standard.set(delegate.appUser.userPhoneNumber, forKey: "mobile")
-        UserDefaults.standard.set(delegate.appUser.userEmail, forKey: "email")
-        UserDefaults.standard.set(delegate.appUser.role, forKey: "role")
-        
-        UserDefaults.standard.synchronize()
-    } else {
-        // Fallback on earlier versions
-    }
-    
-    
-}
-
-func saveImage (image: UIImage, imageName: String ) -> Bool{
-    
-    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-    let getImagePath = paths.appending("/\(imageName)")
-    let checkValidation = FileManager.default
-    
-    if (checkValidation.fileExists(atPath: getImagePath))
-    {
-        print("amr")
-        print(getImagePath)
-        //remove file as its already existed
-        // try! // checkValidation.removeItem(atPath: getImagePath)
-    }
-    else
-    {
-        print("saved URl \(getImagePath)")
-        let imgData = UIImageJPEGRepresentation(image, 0.5)!
-        //write file as its not available
-        try! imgData.write(to: URL.init(fileURLWithPath: getImagePath), options: .atomicWrite)
-        
-    }
-    return true
-}
-func checkImageexist (id :String) -> String{
-    let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
-    let getImagePath = paths.appending("/\(id).png")
-    let checkValidation = FileManager.default
-    print("checLfunction")
-    print(getImagePath)
-    if (checkValidation.fileExists(atPath: getImagePath))
-    {
-        print("amr")
-        print(getImagePath)
-        return getImagePath
-        //remove file as its already existed
-        // try! // checkValidation.removeItem(atPath: getImagePath)
-    } else{
-        return "no"
-    }
-}
-@available(iOS 10.0, *)
-func loadUserData() {
-    let delegate =  UIApplication.shared.delegate as! AppDelegate
-    
-    var user = userModel()
-    user.userPassword = UserDefaults.standard.value(forKey: "password") as? String ?? ""
-    user.userEmail = UserDefaults.standard.value(forKey: "email") as? String ?? ""
-    user.userID = UserDefaults.standard.value(forKey: "ID") as? String ?? ""
-    user.userName = UserDefaults.standard.value(forKey: "name") as? String ?? ""
-    user.userPhoneNumber = UserDefaults.standard.value(forKey: "mobile") as? String ?? ""
-    user.role = UserDefaults.standard.value(forKey: "role") as? Int ?? 0
-    
-    delegate.appUser = user
-    
-}
-
-func removeUserData(){
-    let defaults: UserDefaults = UserDefaults.standard
-    
-    defaults.removeObject(forKey: "password")
-    defaults.removeObject(forKey: "email")
-    defaults.removeObject(forKey: "ID")
-    defaults.removeObject(forKey: "name")
-    defaults.removeObject(forKey: "mobile")
-    
-    defaults.synchronize()
-}
 class Shop {
     
-    //MARK: Properties
     
-    var attendance: Float
-    var attendanceCount: Int
-    var behavior: Float
-    var behaviorCount: Int
-    var email: String
-    var fullname: String
-    var imageURL: String
+    var isAdmin: Bool
+    var membersince: AnyObject
     var isOnline: Bool
-    var membersince: Int
-    var nationality: String
-    var overallRating: Float
-    var overallRatingCount: Int
-    var phone: String
+    var imageURL1: String
+    var imageURL2: String
+    var imageURL3: String
+    var imageURL4: String
+    var shopID: String
+    
     var token: String
+    var personInCharge: String
+    var title: String
+    var phone: String
+    var cr_number: String
+    var address: String
+    var city: String
+    var longtude: Double
+    var latitude: Double
+   
     var type: Int
-    var userID: String
-    var username: String
-    init?(attendance: Float, attendanceCount: Int, behavior: Float,
-          behaviorCount: Int, email: String, fullname: String,
-          imageURL: String, isOnline: Bool, membersince: Int,
-          nationality: String, overallRating: Float, overallRatingCount: Int,
-          phone: String, token: String, type: Int,
-          userID: String, username: String
+    var price: Double
+    var service: Double
+    var waiting: Double
+    var rate: Double
+    init?(
+         isAdmin: Bool,
+     membersince: AnyObject,
+     isOnline: Bool,
+     imageURL1: String,
+     imageURL2: String,
+     imageURL3: String,
+     imageURL4: String,
+     shopID: String,
+    
+     token: String,
+     personInCharge: String,
+     title: String,
+     phone: String,
+     cr_number: String,
+     address: String,
+     city: String,
+     longtude: Double,
+     latitude: Double,
+    
+     type: Int,
+     price: Double,
+     service: Double,
+     waiting: Double,
+     rate: Double
         ) {
         // The name must not be empty
-        guard !userID.isEmpty else {
+        guard !shopID.isEmpty else {
             return nil
         }
-        self.attendance = attendance
-        self.attendanceCount = attendanceCount
-        self.behavior = behavior
-        self.behaviorCount = behaviorCount
-        self.email = email
-        self.fullname = fullname
-        self.imageURL = imageURL
-        self.isOnline = isOnline
+        self.isAdmin = isAdmin
         self.membersince = membersince
-        self.nationality = nationality
-        self.overallRating = overallRating
-        self.overallRatingCount = overallRatingCount
-        self.phone = phone
+        self.isOnline = isOnline
+        self.imageURL1 = imageURL1
+         self.imageURL2 = imageURL2
+         self.imageURL3 = imageURL3
+         self.imageURL4 = imageURL4
+        self.shopID = shopID
         self.token = token
+        self.personInCharge = personInCharge
+        self.title = title
+        self.phone = phone
+        self.cr_number = cr_number
+        self.address = address
+        self.city = city
+        self.longtude = longtude
+        self.latitude = latitude
         self.type = type
-        self.userID = userID
-        self.username = username
+        self.price = price
+        self.service = service
+        self.waiting = waiting
+        self.rate = rate
     }
     func getData ()->[String:AnyObject]{
-        var newUser = [String:AnyObject]()
-        newUser["attendance"] = self.attendance as AnyObject ?? 0.0 as AnyObject
-        newUser["attendanceCount"] = self.attendanceCount as AnyObject ?? 0 as AnyObject
-        newUser["behavior"] = self.behavior as AnyObject ?? 0.0 as AnyObject
-        newUser["behaviorCount"] = self.behaviorCount as AnyObject ?? 0 as AnyObject
-        newUser["email"] = self.email as AnyObject ?? "" as AnyObject
-        newUser["fullname"] = self.fullname as AnyObject ?? "" as AnyObject
-        newUser["imageURL"] = self.imageURL as AnyObject ?? "" as AnyObject
-        newUser["isOnline"] = self.isOnline as AnyObject ?? false as AnyObject
-        newUser["membersince"] = self.membersince as AnyObject ?? 0 as AnyObject
-        newUser["nationality"] = self.nationality as AnyObject ?? "" as AnyObject
-        newUser["overallRating"] = self.attendance as AnyObject ?? 0.0 as AnyObject
-        newUser["overallRatingCount"] = self.overallRatingCount as AnyObject ?? 0 as AnyObject
-        newUser["phone"] = self.phone as AnyObject ?? "" as AnyObject
-        newUser["token"] = self.token as AnyObject ?? "" as AnyObject
-        newUser["type"] = self.type as AnyObject ?? 0 as AnyObject
-        newUser["userID"] = self.userID as AnyObject ?? "" as AnyObject
-        newUser["username"] = self.username as AnyObject ?? "" as AnyObject
-        return newUser
+        var newShop = [String:AnyObject]()
+        newShop["isAdmin"] = self.isAdmin as AnyObject ?? 0.0 as AnyObject
+        newShop["membersince"] = self.membersince as AnyObject ?? 0 as AnyObject
+        newShop["isOnline"] = self.isOnline as AnyObject ?? 0.0 as AnyObject
+        newShop["imageURL1"] = self.imageURL1 as AnyObject ?? 0 as AnyObject
+        newShop["imageURL2"] = self.imageURL2 as AnyObject ?? 0 as AnyObject
+        newShop["imageURL3"] = self.imageURL3 as AnyObject ?? 0 as AnyObject
+        newShop["imageURL4"] = self.imageURL4 as AnyObject ?? 0 as AnyObject
+        newShop["shopID"] = self.shopID as AnyObject ?? "" as AnyObject
+        newShop["token"] = self.token as AnyObject ?? "" as AnyObject
+        newShop["personInCharge"] = self.personInCharge as AnyObject ?? "" as AnyObject
+        newShop["title"] = self.title as AnyObject ?? false as AnyObject
+        newShop["phone"] = self.phone as AnyObject ?? 0 as AnyObject
+        newShop["cr_number"] = self.cr_number as AnyObject ?? "" as AnyObject
+        newShop["address"] = self.address as AnyObject ?? 0.0 as AnyObject
+        newShop["city"] = self.city as AnyObject ?? 0 as AnyObject
+        newShop["longtude"] = self.longtude as AnyObject ?? "" as AnyObject
+        newShop["latitude"] = self.latitude as AnyObject ?? "" as AnyObject
+        newShop["type"] = self.type as AnyObject ?? 0 as AnyObject
+        newShop["price"] = self.price as AnyObject ?? "" as AnyObject
+        newShop["service"] = self.service as AnyObject ?? "" as AnyObject
+         newShop["waiting"] = self.waiting as AnyObject ?? "" as AnyObject
+         newShop["rate"] = self.rate as AnyObject ?? "" as AnyObject
+        
+        return newShop
     }
     
 }

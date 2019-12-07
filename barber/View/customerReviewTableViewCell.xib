@@ -1,21 +1,195 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="customerReviewTableViewCell" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customerReviewTableViewCell" rowHeight="215" id="PII-Vq-haZ" customClass="customerReviewTableViewCell" customModule="barber" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="263" height="215"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PII-Vq-haZ" id="OIa-oZ-lIi">
+                <rect key="frame" x="0.0" y="0.0" width="263" height="214.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PaS-11-Gew" userLabel="container">
+                        <rect key="frame" x="10" y="16" width="235" height="193"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="xxH-Km-BIY">
+                                <rect key="frame" x="5" y="5" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="soj-4Z-kjr"/>
+                                    <constraint firstAttribute="height" constant="40" id="y0k-0e-UVV"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D5L-NW-SVQ" userLabel="Name">
+                                <rect key="frame" x="55" y="5" width="35.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Suq-Nd-Ycz" userLabel="date">
+                                <rect key="frame" x="55" y="30" width="31" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PmL-yg-K0X" customClass="FloatRatingView" customModule="barber" customModuleProvider="target">
+                                <rect key="frame" x="125" y="61" width="100" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="HmA-MK-Lbf"/>
+                                    <constraint firstAttribute="width" constant="100" id="Yz8-I5-gFq"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ol5-Bf-pim" userLabel="comment">
+                                <rect key="frame" x="5" y="65" width="116" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="a5k-oD-NdA">
+                                <rect key="frame" x="10" y="137.5" width="215" height="20.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rK6-An-F2j">
+                                        <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coR-Ml-vX6">
+                                        <rect key="frame" x="173" y="0.0" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="7n4-ZG-xFJ"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3tD-Ka-EbC">
+                                <rect key="frame" x="10" y="163" width="215" height="25"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ss7-2g-nuh" customClass="FloatRatingView" customModule="barber" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="cja-7O-rgO"/>
+                                            <constraint firstAttribute="height" constant="25" id="xdU-lN-ev7"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="88j-A8-TOJ" customClass="FloatRatingView" customModule="barber" customModuleProvider="target">
+                                        <rect key="frame" x="115" y="0.0" width="100" height="25"/>
+                                        <color key="backgroundColor" red="1" green="0.98612997889999998" blue="0.99617041989999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="UdB-Se-Fir"/>
+                                            <constraint firstAttribute="height" constant="25" id="lSs-V1-RVn"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="StarEmpty"/>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="StarFull"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="minImageSize">
+                                                <size key="value" width="0.0" height="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="Tyk-vC-T5m"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.98612997889999998" blue="0.99617041989999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="xxH-Km-BIY" firstAttribute="leading" secondItem="PaS-11-Gew" secondAttribute="leading" constant="5" id="2Tk-9s-sAC"/>
+                            <constraint firstAttribute="bottom" secondItem="3tD-Ka-EbC" secondAttribute="bottom" constant="5" id="4Df-aJ-O3C"/>
+                            <constraint firstItem="Suq-Nd-Ycz" firstAttribute="top" secondItem="D5L-NW-SVQ" secondAttribute="bottom" constant="8" id="8CC-Gb-SMM"/>
+                            <constraint firstItem="D5L-NW-SVQ" firstAttribute="leading" secondItem="xxH-Km-BIY" secondAttribute="trailing" constant="10" id="FW1-s3-PJB"/>
+                            <constraint firstItem="Suq-Nd-Ycz" firstAttribute="leading" secondItem="D5L-NW-SVQ" secondAttribute="leading" id="ODh-5F-y8o"/>
+                            <constraint firstItem="a5k-oD-NdA" firstAttribute="leading" secondItem="PaS-11-Gew" secondAttribute="leading" constant="10" id="Olb-tO-i3d"/>
+                            <constraint firstItem="Ol5-Bf-pim" firstAttribute="leading" secondItem="xxH-Km-BIY" secondAttribute="leading" id="TQp-ZD-mHG"/>
+                            <constraint firstItem="xxH-Km-BIY" firstAttribute="top" secondItem="PaS-11-Gew" secondAttribute="top" constant="5" id="Xkd-1h-zeC"/>
+                            <constraint firstItem="3tD-Ka-EbC" firstAttribute="top" secondItem="a5k-oD-NdA" secondAttribute="bottom" constant="5" id="czC-ka-FmL"/>
+                            <constraint firstAttribute="trailing" secondItem="a5k-oD-NdA" secondAttribute="trailing" constant="10" id="dbd-F3-kso"/>
+                            <constraint firstAttribute="trailing" secondItem="PmL-yg-K0X" secondAttribute="trailing" constant="10" id="f07-Ud-tFQ"/>
+                            <constraint firstAttribute="trailing" secondItem="3tD-Ka-EbC" secondAttribute="trailing" constant="10" id="fyR-z8-NJE"/>
+                            <constraint firstItem="PmL-yg-K0X" firstAttribute="leading" secondItem="Ol5-Bf-pim" secondAttribute="trailing" constant="4" id="l0V-cx-8uX"/>
+                            <constraint firstItem="3tD-Ka-EbC" firstAttribute="leading" secondItem="PaS-11-Gew" secondAttribute="leading" constant="10" id="nk0-gI-N5g"/>
+                            <constraint firstItem="D5L-NW-SVQ" firstAttribute="top" secondItem="xxH-Km-BIY" secondAttribute="top" id="pfc-sK-jCT"/>
+                            <constraint firstItem="Ol5-Bf-pim" firstAttribute="top" secondItem="xxH-Km-BIY" secondAttribute="bottom" constant="20" id="xsh-In-zqz"/>
+                            <constraint firstItem="PmL-yg-K0X" firstAttribute="centerY" secondItem="Ol5-Bf-pim" secondAttribute="centerY" id="zqo-Cq-wSZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.9028196383" green="0.9028196383" blue="0.9028196383" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="PaS-11-Gew" secondAttribute="trailing" constant="10" id="mCQ-9d-fXp"/>
+                    <constraint firstItem="PaS-11-Gew" firstAttribute="leading" secondItem="OIa-oZ-lIi" secondAttribute="leading" constant="10" id="u6Q-a4-tUP"/>
+                    <constraint firstItem="PaS-11-Gew" firstAttribute="top" secondItem="OIa-oZ-lIi" secondAttribute="topMargin" constant="5" id="vqw-cD-MoM"/>
+                    <constraint firstItem="PaS-11-Gew" firstAttribute="bottom" secondItem="OIa-oZ-lIi" secondAttribute="bottomMargin" constant="5" id="yKQ-z0-Jdz"/>
+                </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <viewLayoutGuide key="safeArea" id="4ui-H5-59A"/>
+            <connections>
+                <outlet property="arrivalLabel" destination="coR-Ml-vX6" id="aBg-Zh-74n"/>
+                <outlet property="arrivalReview" destination="88j-A8-TOJ" id="lRa-a0-3Jp"/>
+                <outlet property="behaviourLabel" destination="rK6-An-F2j" id="HOr-rL-eBF"/>
+                <outlet property="behaviourReview" destination="ss7-2g-nuh" id="Y1e-h0-hq7"/>
+                <outlet property="commentLabel" destination="Ol5-Bf-pim" id="2cy-z4-J8y"/>
+                <outlet property="containerView" destination="PaS-11-Gew" id="WE0-md-rca"/>
+                <outlet property="dateLabel" destination="Suq-Nd-Ycz" id="4il-Wq-Kp4"/>
+                <outlet property="img" destination="xxH-Km-BIY" id="Qq4-xh-eWL"/>
+                <outlet property="nameLabel" destination="D5L-NW-SVQ" id="Hcg-le-8Un"/>
+                <outlet property="totalReview" destination="PmL-yg-K0X" id="9J6-ha-2F2"/>
+            </connections>
+            <point key="canvasLocation" x="-2.5" y="330.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="StarEmpty" width="32" height="32"/>
+        <image name="StarFull" width="32" height="32"/>
+        <image name="logo" width="659" height="659"/>
+    </resources>
 </document>

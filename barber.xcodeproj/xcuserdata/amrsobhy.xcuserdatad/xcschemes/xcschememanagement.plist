@@ -7,7 +7,25 @@
 		<key>barber.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>37</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2FE1B6EC203659020090415F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2FE1B703203659020090415F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2FE1B70E203659020090415F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

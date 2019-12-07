@@ -10,10 +10,39 @@ import UIKit
 
 class barberSignUpGalleryViewController: UIViewController {
 
+    @IBOutlet weak var importGallery: UIButton!
+    
+    @IBOutlet weak var cameraBtn: UIButton!
+    
+    @IBOutlet weak var skipBtn: UIButton!
+    
+    @IBOutlet weak var nextBtn: UIButton!
+    
     override func viewDidLoad() {
+        importGallery.ButtonborderRound()
+        cameraBtn.ButtonborderRound()
+        skipBtn.ButtonborderRound()
+        nextBtn.ButtonborderRound()
+        
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+    }
+    
+    @IBOutlet weak var userImage: UIImageView!
+    
+    @IBAction func importGalleryAction(_ sender: Any) {
+    }
+    
+    @IBAction func cameraAction(_ sender: Any) {
+    }
+    
+    @IBAction func skipAction(_ sender: Any) {
+        var masterScreen = self.storyboard?.instantiateViewController(withIdentifier: "masterHomeView") as? masterHomeViewController
+        self.navigationController?.pushViewController(masterScreen!, animated: true)
+    }
+    
+    @IBAction func nextAction(_ sender: Any) {
     }
 
     override func didReceiveMemoryWarning() {

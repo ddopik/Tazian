@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+struct addressMap {
+    var longtide:Double
+    var latitude :Double
+    var address:String
+    var city:String
+}
+var myLocation = addressMap(longtide: 0, latitude: 0, address: "", city: "")
+var shopBarberNode = [String]()
+
+
