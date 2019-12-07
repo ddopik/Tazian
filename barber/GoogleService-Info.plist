@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>951254269364-esm0jii3ri19g9q141lt3gunfeispf4o.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.951254269364-esm0jii3ri19g9q141lt3gunfeispf4o</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDyk5gV4nhRd1v_oV_s5GHVJGJ4HQCJkk0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>951254269364</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>tazien.app</string>
+	<key>PROJECT_ID</key>
+	<string>barber-49684</string>
+	<key>STORAGE_BUCKET</key>
+	<string>barber-49684.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:951254269364:ios:ce37d8b920778557</string>
+	<key>DATABASE_URL</key>
+	<string>https://barber-49684.firebaseio.com</string>
+</dict>
+</plist>
